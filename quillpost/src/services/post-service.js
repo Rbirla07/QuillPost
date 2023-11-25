@@ -10,3 +10,8 @@ export const createPost = (postData) => {
         .then(response => response.data)
 
 };
+
+//get all posts
+export const loadAllPosts = () => {
+    return myPostAxios.get(BASE_URL_POST+`/api/posts`).then(response => response.data)
+}
