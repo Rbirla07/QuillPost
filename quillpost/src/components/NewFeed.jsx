@@ -26,7 +26,13 @@ function NewFeed() {
   },[])
 
   const changePage = (pageNumber = 0, pageSize = 5) => {
-    
+    if(pageNumber > postContent.pageNumber && postContent.lastPage) {
+      return;
+    }
+
+    if(pageNumber < postContent.pageNumber && postContent.pageNumber===0) {
+      return;
+    }
     loadAllPosts(pageNumber, pageSize).then((data) => {
       setPostContent(data)
       console.log(data);
@@ -56,7 +62,7 @@ function NewFeed() {
 
                 <Container className = 'text-center mt-3'>
                   <Pagination>
-                    <PaginationItem onClick={() => changePage(--postContent.pageNumber)} disabled = {postContent.pageNumber === 0}>
+                    <PaginationItem onClick={() => changePage(postContent.pageNumber-1)} disabled = {postContent.pageNumber === 0}>
                       <PaginationLink previous>
                           prev
                       </PaginationLink>
@@ -72,7 +78,7 @@ function NewFeed() {
                         ))
                     }
 
-                    <PaginationItem onClick={() => changePage(++postContent.pageNumber)} disabled = {postContent.lastPage}>
+                    <PaginationItem onClick={() => changePage(postContent.pageNumber+1)} disabled = {postContent.lastPage}>
                       <PaginationLink next>
                           next
                       </PaginationLink>
