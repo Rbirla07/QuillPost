@@ -10,3 +10,8 @@ export const createPost = (postData) => {
         .then(response => response.data)
 
 };
+
+//get all posts
+export const loadAllPosts = (pageNumber, pageSize) => {
+    return myPostAxios.get(BASE_URL_POST+`/api/posts?pageNumber=${pageNumber}&pageSize=${pageSize}`).then(response => response.data)
+}
