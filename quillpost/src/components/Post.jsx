@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import {Card, CardBody, CardText, Button} from 'reactstrap'
 
 function Post({post = {title : "This is default post title", content : "This is default post content"}}) {
@@ -11,7 +12,7 @@ function Post({post = {title : "This is default post title", content : "This is 
             </CardText>
 
             <div>
-                <Button>Read More</Button>
+                <Link className="btn btn-secondary" to = {'/posts/'+post.postId}>Read More</Link>
             </div>
         </CardBody>
     </Card>
